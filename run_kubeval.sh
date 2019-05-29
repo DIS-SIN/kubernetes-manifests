@@ -1,8 +1,7 @@
-for filename in `find . ! -name '.travis.yml' -type f  \( -iname \*.yaml -o -iname \*.yml \)`
+for filename in `find . ! -name '.travis.yml' -type f  \( -iname \*.yaml -o -iname \*.yml \)` ; do
   [ -f "${filename}" ] || break
-  ./kubeval "${filename}"
+  kubeval "${filename}"
   if [ $? != 0 ] ; then
-    echo 
     echo "${filename}: Failed." && break
   fi
 done
