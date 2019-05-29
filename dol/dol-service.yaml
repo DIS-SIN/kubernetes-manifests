@@ -12,4 +12,3 @@ spec:
   selector:
     run: dol
   type: NodePort
-status:
