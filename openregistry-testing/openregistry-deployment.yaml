@@ -8,6 +8,8 @@ metadata:
   name: openregistry-deployment
   annotations:
     flux.weave.works/automated: 'true'
+    flux.weave.works/ignore: "true" 
+  namespace: openregistry
 spec:
   replicas: 1
   selector:
