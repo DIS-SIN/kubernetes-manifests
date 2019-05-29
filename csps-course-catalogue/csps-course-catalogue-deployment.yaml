@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: csps-course-catalogue-deployment
+  name: csps-course-catalogue-deployment
+  namespace: catalogue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: csps-course-catalogue-deployment
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: csps-course-catalogue-deployment
+    spec:
+      containers:
+       - image: docker.io/dissin/csps-course-catalogue:latest
+         imagePullPolicy: Always
+         name: csps-course-catalogue
+         ports:
+          - containerPort: 5000
+         imagePullPolicy: Always

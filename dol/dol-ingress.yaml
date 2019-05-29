@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "dol-ingress"
+  namespace: "default"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:596664304429:certificate/81481bd2-999d-4998-9dfc-df0c90a2a42a
+#    alb.ingress.kubernetes.io/load-balancer-attributes: access_logs.s3.enabled=true,access_logs.s3.bucket=daan-ingress-logs,access_logs.s3.prefix=dol-testing
+    external-dns.alpha.kubernetes.io/hostname: dol-testing.steve.da-an.ca
+  labels:
+    run: dol 
+spec:
+  tls:
+  - hosts:
+    - dol-testing.steve.da-an.ca
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "dol-service"
+              servicePort: 80
+
+

@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp:
+  labels:
+    run: openregistry-deployment
+  name: openregistry-deployment
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: openregistry-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: openregistry-deployment
+    spec:
+      containers:
+      - image: docker.io/dissin/flaskfrontend
+        name: flaskfrontend
+        ports:
+        - containerPort: 3000
+status: {}

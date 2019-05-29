@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: dol
+  name: dol-service
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5054
+  selector:
+    run: dol
+  type: NodePort
+status:

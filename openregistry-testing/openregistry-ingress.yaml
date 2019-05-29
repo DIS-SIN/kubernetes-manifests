@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "openregistry-ingress"
+  namespace: "default"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: 	arn:aws:acm:us-east-2:596664304429:certificate/fc215315-5cdd-4f4c-a3a4-cd9281c996aa
+    external-dns.alpha.kubernetes.io/hostname: openregistry-testing.steve.da-an.ca
+
+  labels:
+    run: openregistry-ingress
+spec:
+  tls:
+  - hosts:
+    - openregistry-testing.steve.da-an.ca
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "openregistry-service"
+              servicePort: 80

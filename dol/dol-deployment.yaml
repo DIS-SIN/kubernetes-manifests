@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp:
+  labels:
+    run: dol
+  name: dol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: dol
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: dol
+    spec:
+      containers:
+      - image: 596664304429.dkr.ecr.us-east-1.amazonaws.com/csps/dol:latest
+        name: dol
+        ports:
+        - containerPort: 5054
+        resources: {}
+        env:
+        - name: DOL_SQLALCHEMY_DATABASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: dol-secret
+              key: DOL_SQLALCHEMY_DATABASE_URI
+        - name: DOL_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dol-secret
+              key: DOL_SECRET_KEY
+status: {}

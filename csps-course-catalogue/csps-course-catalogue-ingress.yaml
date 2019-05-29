@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:596664304429:certificate/259795fe-b4ac-430a-a936-7c4ecb392133
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    external-dns.alpha.kubernetes.io/hostname: catalogue-testing.steve.da-an.ca
+    kubernetes.io/ingress.class: alb
+  labels:
+    run: csps-course-catalogue-ingress
+  name: csps-course-catalogue-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: csps-course-catalogue
+          servicePort: 80
+        path: /*
+  tls:
+  - hosts:
+    - catalogue-testing.steve.da-an.ca
