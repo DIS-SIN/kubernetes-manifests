@@ -6,6 +6,7 @@ metadata:
   labels:
     run: dol
   name: dol
+  namespace: "dol"
 spec:
   replicas: 1
   selector:

@@ -9,6 +9,7 @@ metadata:
   labels:
     run: csps-course-catalogue-ingress
   name: csps-course-catalogue-ingress
+  namespace: catalogue
 spec:
   rules:
   - http:

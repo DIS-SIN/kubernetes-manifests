@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: standalone-chrome
+  name: standalone-chrome
+  namespace: comments-scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: standalone-chrome
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: standalone-chrome
+    spec:
+      containers:
+      - image: selenium/standalone-chrome
+        name: standalone-chrome
+        ports:
+        - containerPort: 4444

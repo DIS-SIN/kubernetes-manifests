@@ -5,6 +5,7 @@ metadata:
   labels:
     run: openregistry-service
   name: openregistry-service
+  namespace: openregistry
 spec:
   ports:
   - port: 80
