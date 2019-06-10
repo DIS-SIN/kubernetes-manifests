@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: csps-course-catalogue-deployment
+    run: csps-course-catalogue
   name: csps-course-catalogue-deployment
   namespace: catalogue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: csps-course-catalogue-deployment
+      run: csps-course-catalogue
   template:
     metadata:
       creationTimestamp:
       labels:
-        run: csps-course-catalogue-deployment
+        run: csps-course-catalogue
     spec:
       containers:
        - image: docker.io/dissin/csps-course-catalogue:latest
@@ -23,3 +23,48 @@ spec:
          ports:
           - containerPort: 5000
          imagePullPolicy: Always
+         env:
+           - name: DEBUG
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: DEBUG
+           - name: LOCAL_DB
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: LOCAL_DB
+           - name: LAST_YEAR
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: LAST_YEAR
+           - name: THIS_YEAR
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: THIS_YEAR
+           - name: BABEL_DEFAULT_LOCAL
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: BABEL_DEFAULT_LOCAL
+           - name: JSON_AS_ASCII
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: JSON_AS_ASCII
+           - name: JSONIFY_PRETTYPRINT_REGULAR
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: JSONIFY_PRETTYPRINT_REGULAR
+           - name: JSON_SORT_KEYS
+             valueFrom:
+               configMapKeyRef:
+                 name: catalogue-config
+                 key: JSON_SORT_KEYS
+
+
+
+
