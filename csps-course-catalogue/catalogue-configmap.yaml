@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  catalogue-config.txt: |+
+    DEBUG=False
+    LOCAL_DB=False
+    LAST_YEAR=2018-19
+    THIS_YEAR=2019-20
+    BABEL_DEFAULT_LOCALE=en
+    JSON_AS_ASCII=False
+    JSONIFY_PRETTYPRINT_REGULAR=True
+    JSON_SORT_KEYS=False
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: catalogue-config
+  namespace: catalogue
